@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <title>Multi Path Stories</title>
+</head>
+<body>
+    <a href="/">Back to the start</a>
+    <table>
+        <tr>
+            <td></td>
+            <td>
+                {{#if nodeTwo }}
+                <a href="/{{nodeTwo._id}}">{{nodeTwo.content}}</a>
+                {{else}}
+                <form action="/sentences" method="post">
+                    <textarea name="content"></textarea>
+                    <input name="node" value="2" style="display: none;"/>
+                    <input name="origin" value="{{startSentence._id}}" style="display: none;"/>
+                    <button type="submit">Submit</button>
+                </form>
+                {{/if}}
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                {{#if nodeOne }}
+                <a href="/{{nodeOne._id}}">{{nodeOne.content}}</a>
+                {{else}}
+                <form action="/sentences" method="post">
+                    <textarea name="content"></textarea>
+                    <input name="node" value="1" style="display: none;"/>
+                    <input name="origin" value="{{startSentence._id}}" style="display: none;"/>
+                    <button type="submit">Submit</button>
+                </form>
+                {{/if}}
+            </td>
+            <td>
+                <p>{{startSentence.content}}</p>
+                
+            </td>
+            <td>
+                {{#if nodeThree }}
+                <a href="/{{nodeThree._id}}">{{nodeThree.content}}</a>
+                {{else}}
+                <form action="/sentences" method="post">
+                    <textarea name="content"></textarea>
+                    <input name="node" value="3" style="display: none;"/>
+                    <input name="origin" value="{{startSentence._id}}" style="display: none;"/>
+                    <button type="submit">Submit</button>
+                </form>
+                {{/if}}
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                {{#if nodeFour }}
+                <a href="/{{nodeFour._id}}">{{nodeFour.content}}</a>
+                {{else}}
+                <form action="/sentences" method="post">
+                    <textarea name="content"></textarea>
+                    <input name="node" value="4" style="display: none;"/>
+                    <input name="origin" value="{{startSentence._id}}" style="display: none;"/>
+                    <button type="submit">Submit</button>
+                </form>
+                {{/if}}
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+</body>
+</html>
