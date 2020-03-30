@@ -39,7 +39,15 @@
                 {{/if}}
             </td>
             <td>
+                {{#if startSentence }}
                 <p>{{startSentence.content}}</p>
+                {{else}}
+                <form action="/sentences" method="post">
+                    <textarea name="content"></textarea>
+                    <input name="start" value="true" style="display: none;"/>
+                    <button type="submit">Submit</button>
+                </form>
+                {{/if}}
                 
             </td>
             <td>

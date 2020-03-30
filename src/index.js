@@ -9,9 +9,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const viewsPath = path.join(__dirname, '../views');
+const publicPath = path.join(__dirname, '../public');
+
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
 
+app.use('/public', express.static(publicPath)); 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
@@ -22,18 +25,24 @@ app.get('/', async (req, res) => {
 
     try {
         const startSentence = await Sentence.findOne({ start: true });
-        const nodeOne = await Sentence.findOne({ origin: startSentence._id, node: 1});
-        const nodeTwo = await Sentence.findOne({ origin: startSentence._id, node: 2});
-        const nodeThree = await Sentence.findOne({ origin: startSentence._id, node: 3});
-        const nodeFour = await Sentence.findOne({ origin: startSentence._id, node: 4});
+
+        if(startSentence) {
+            const nodeOne = await Sentence.findOne({ origin: startSentence._id, node: 1});
+            const nodeTwo = await Sentence.findOne({ origin: startSentence._id, node: 2});
+            const nodeThree = await Sentence.findOne({ origin: startSentence._id, node: 3});
+            const nodeFour = await Sentence.findOne({ origin: startSentence._id, node: 4});
+            res.render('main', { 
+                startSentence,  
+                nodeOne,
+                nodeTwo,
+                nodeThree,
+                nodeFour
+            });
+        } else {
+            res.render('main');
+        }
         
-        res.render('main', { 
-            startSentence,  
-            nodeOne,
-            nodeTwo,
-            nodeThree,
-            nodeFour
-        });
+        
     } catch (e) {
         res.status(404).send();
     }
