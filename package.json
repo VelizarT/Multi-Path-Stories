@@ -18,6 +18,7 @@
     "lodash": "^4.17.15",
     "express": "*",
     "body-parser": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "hbs": "*"
   }
 }
